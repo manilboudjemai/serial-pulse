@@ -2,11 +2,6 @@
 
 namespace App\Model;
 
-require_once 'app/model/SerialConfig.php';
-require_once 'app/model/SerialConnection.php';
-
-require_once 'app/model/enum/ConnectionState.php';
-
 use App\Model\Enum\OS;
 use App\Model\Enum\Baud;
 use App\Model\Enum\Mode;

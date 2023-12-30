@@ -2,17 +2,8 @@
 
 declare(strict_types=1);
 
+require_once 'vendor/autoload.php';
 require_once 'helpers.php';
-
-require_once 'app/model/SerialConnector.php';
-
-require_once 'app/model/enum/OS.php';
-require_once 'app/model/enum/Baud.php';
-require_once 'app/model/enum/Mode.php';
-require_once 'app/model/enum/Parity.php';
-require_once 'app/model/enum/DataBit.php';
-require_once 'app/model/enum/StopBit.php';
-require_once 'app/model/enum/FlowControl.php';
 
 use App\Model\Enum\Baud;
 use App\Model\Enum\Mode;
@@ -37,15 +28,15 @@ if ($connector->connectionIsOpen()) {
     dd("Connection is open.");
 
     $connector->send("H");
-    error_log("H\r", 3, "output.log");
+    error_log("H\n", 3, "output.log");
     $connector->send("E");
-    error_log("E\r", 3, "output.log");
+    error_log("E\n", 3, "output.log");
     $connector->send("L");
-    error_log("L\r", 3, "output.log");
+    error_log("L\n", 3, "output.log");
     $connector->send("L");
-    error_log("L\r", 3, "output.log");
+    error_log("L\n", 3, "output.log");
     $connector->send("O");
-    error_log("O\r", 3, "output.log");
+    error_log("O\n", 3, "output.log");
 
     dd("All data sent.");
 
