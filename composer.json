@@ -2,9 +2,7 @@
     "name": "manilboudjemai/php-serial-connector",
     "autoload": {
         "psr-4": {
-            "App\\Model\\": "app/model/",
-            "App\\Command\\": "app/command/",
-            "App\\Command\\Trait\\": "app/command/trait/",
+            "App\\": "app/",
             "Core\\": "core/"
         }
     },

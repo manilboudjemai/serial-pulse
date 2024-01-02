@@ -2,10 +2,13 @@
 
 namespace App\Model\Enum;
 
+use App\Model\Enum\Interface\Choosable;
+use App\Model\Enum\Interface\Queryable;
+
 /**
  * Enumerates the flow control types for a serial port.
  */
-enum FlowControl: int
+enum FlowControl: int implements Choosable, Queryable
 {
     /**
      * Represents no flow control.
@@ -41,6 +44,31 @@ enum FlowControl: int
             FlowControl::XON_XOFF => "XON=on RTS=off DTR=off",
             FlowControl::RTS_CTS => "XON=off RTS=on DTR=off",
             FlowControl::DTR_DSR => "XON=off RTS=off DTR=on",
+        };
+    }
+
+    public static function choices(): array
+    {
+        return array_map(fn (FlowControl $flowControl): string => (string) $flowControl->name, self::instances());
+    }
+
+    public static function instances(): array
+    {
+        return [
+            self::NONE,
+            self::XON_XOFF,
+            self::RTS_CTS,
+            self::DTR_DSR,
+        ];
+    }
+
+    public static function getByName(string $name): FlowControl
+    {
+        return match ($name) {
+            self::NONE->name => self::NONE,
+            self::XON_XOFF->name => self::XON_XOFF,
+            self::RTS_CTS->name => self::RTS_CTS,
+            self::DTR_DSR->name => self::DTR_DSR,
         };
     }
 }

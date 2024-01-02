@@ -2,10 +2,13 @@
 
 namespace App\Model\Enum;
 
+use App\Model\Enum\Interface\Choosable;
+use App\Model\Enum\Interface\Queryable;
+
 /**
  * Enumerates different types of parity used in serial communication.
  */
-enum Parity: int
+enum Parity: int implements Choosable, Queryable
 {
     /**
      * Represents no parity.
@@ -37,5 +40,27 @@ enum Parity: int
             Parity::EVEN => 'E',
         };
     }
-}
 
+    public static function choices(): array
+    {
+        return array_map(fn (Parity $parity): string => (string) $parity->name, self::instances());
+    }
+
+    public static function instances(): array
+    {
+        return [
+            self::NONE,
+            self::ODD,
+            self::EVEN,
+        ];
+    }
+
+    public static function getByName(string $name): Parity
+    {
+        return match ($name) {
+            self::NONE->name => self::NONE,
+            self::ODD->name => self::ODD,
+            self::EVEN->name => self::EVEN,
+        };
+    }
+}
