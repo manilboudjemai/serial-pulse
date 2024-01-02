@@ -52,7 +52,7 @@ class SerialConnector
      * @param FlowControl $flowControl The flow control type set for the serial connection.
      * @param Parity $parity The parity type set for the serial connection.
      * @param StopBit $stopBit The stop bit configuration for the serial connection.
-     * @param int $wait The duration, in seconds, to pause between successive transmissions.
+     * @param int|null $wait The duration, in seconds, to pause between successive transmissions.
      *
      * @throws \Exception If the operating system is not supported.
      */
@@ -63,7 +63,7 @@ class SerialConnector
         FlowControl $flowControl = FlowControl::NONE,
         Parity $parity = Parity::NONE,
         StopBit $stopBit = StopBit::ONE,
-        int $wait = 3
+        ?int $wait = 3
     )
     {
         if (OS::isWin()) {
@@ -78,7 +78,7 @@ class SerialConnector
                 stopBit: $stopBit
             );
 
-            $this->wait = $wait;
+            $this->wait = $wait ?? 3;
             $this->connection = new SerialConnection();
             $this->process = null;
 
@@ -178,7 +178,7 @@ class SerialConnector
             return true;
         }
 
-        throw new \Exception("Unable to open the connection to the serial port.");
+        throw new \Exception("Failed to open the serial port connection; the specified port may be incorrect.");
     }
 
     /**
@@ -218,7 +218,7 @@ class SerialConnector
 
             proc_close($this->process);
 
-            dd("Connection closed.");
+            output("Connection terminated.");
 
             return true;
         }

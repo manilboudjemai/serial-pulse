@@ -118,8 +118,8 @@ class CreateSerialConnection extends Command
         $waitQuestion = (new Question(
             question: 'Specify a time interval to wait between transmissions, in seconds (default: 3): '
         ))
-            ->setValidator(function (string $value) {
-                if (is_numeric($value) && $value > 0) {
+            ->setValidator(function (?string $value) {
+                if ($value === null || (is_numeric($value) && $value > 0)) {
                     return $value;
                 } else {
                     throw new \RuntimeException('The wait time must be a number greater than 0.');
@@ -172,7 +172,7 @@ class CreateSerialConnection extends Command
         $flowControl = $input->getArgument('flow_control');
         $parity = $input->getArgument('parity');
         $stopBit = $input->getArgument('stop_bit');
-        $wait = (int) $input->getArgument('wait');
+        $wait = is_null($input->getArgument('wait')) ? $input->getArgument('wait') : (int) $input->getArgument('wait');
 
         try {
             $connector = new SerialConnector(

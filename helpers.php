@@ -13,3 +13,15 @@ if (! function_exists('dd')) {
         }
     }
 }
+
+if (! function_exists('output')) {
+    function output(mixed $value, bool $die = false): void
+    {
+        print_r($value);
+
+        if ($die) {
+            die();
+            exit;
+        }
+    }
+}
