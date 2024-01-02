@@ -9,6 +9,7 @@ use App\Model\Enum\Parity;
 use App\Model\Enum\DataBit;
 use App\Model\Enum\StopBit;
 use App\Model\Enum\FlowControl;
+use App\Model\SerialConnection;
 use App\Model\Enum\ConnectionState;
 
 /**
@@ -62,7 +63,7 @@ class SerialConnector
         FlowControl $flowControl = FlowControl::NONE,
         Parity $parity = Parity::NONE,
         StopBit $stopBit = StopBit::ONE,
-        int $wait = 1
+        int $wait = 3
     )
     {
         if (OS::isWin()) {
