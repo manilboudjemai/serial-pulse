@@ -127,6 +127,8 @@ class CreateSerialConnection extends Command
             })
             ->setMaxAttempts(3);
 
+        $this->skipLine($output);
+
         $port = $this->questionHelper->ask($input, $output, $portQuestion);
         $this->skipLine($output);
 
@@ -172,7 +174,9 @@ class CreateSerialConnection extends Command
         $flowControl = $input->getArgument('flow_control');
         $parity = $input->getArgument('parity');
         $stopBit = $input->getArgument('stop_bit');
-        $wait = is_null($input->getArgument('wait')) ? $input->getArgument('wait') : (int) $input->getArgument('wait');
+        $wait = is_null($input->getArgument('wait'))
+            ? $input->getArgument('wait')
+            : (int) $input->getArgument('wait');
 
         try {
             $connector = new SerialConnector(
