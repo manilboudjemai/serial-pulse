@@ -4,6 +4,10 @@ This application is an experimental project utilizing [PHP](https://github.com/p
 
 It provides a CLI interactive experience, enabling users to configure a connection and transmit data over the serial port.
 
+## Installation
+
+Install the library using Composer. Run the following command in your project's root directory; `composer require manilboudjemai/serial-pulse`.
+
 ## Features
 
 ### CLI Interactivity
@@ -14,19 +18,19 @@ This command initiates an interactive process, allowing users to configure and e
 
 ## How to Use
 
-Ensure you have **PHP 8.2.13 or higher** installed in your environment.
+Ensure you have **PHP 8.2 or higher** installed in your environment.
 
 Open a CLI interface and locate yourself at the root of the application's directory structure.
 
-Run the following command to initiate the application : `php index.php app:serial-connect`. This launches an interactive process for configuring the connection and sending data.
+Run the following command to initiate the application : `php vendor/manilboudjemai/serial-pulse/index.php app:serial-connect`. This launches an interactive process for configuring the connection and sending data.
 
-To view all available commands, use `php index.php list`.
+To view all available commands, use `php vendor/manilboudjemai/serial-pulse/index.php list`.
 
 ## Adding New Commands
 
-Develop a new `App\Command` class in the `app/command` directory; e.g. `NewCommand.php`.
+Develop a new `App\Command` class in the `vendor/manilboudjemai/serial-pulse/app/command` directory; e.g. `NewCommand.php`.
 
-Add the new command class to the application by including `$app->add(new NewCommand());` in the `index.php` file, the main entry point of the application.
+Add the new command class to the application by including `$app->add(new NewCommand());` in the `vendor/manilboudjemai/serial-pulse/index.php` file, the main entry point of the application.
 
 ## Considerations
 
