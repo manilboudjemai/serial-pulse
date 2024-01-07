@@ -1,5 +1,8 @@
 {
-    "name": "manilboudjemai/php-serial-connector",
+    "name": "manilboudjemai/serial-pulse",
+    "description": "Experimental project for serial communication with a connected device using PHP for CLI interaction.",
+    "type": "library",
+    "license": "GPL-3.0-only",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -14,6 +17,7 @@
         }
     ],
     "require": {
+        "php": ">=8.2.13",
         "symfony/console": "^7.0"
     },
     "require-dev": {
